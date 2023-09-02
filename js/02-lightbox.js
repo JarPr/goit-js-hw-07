@@ -4,7 +4,7 @@ const container = document.querySelector('.gallery');
 const markup = createMarkup(galleryItems);
 
 container.insertAdjacentHTML("beforeend", markup);
-container.addEventListener("click", handleImmage);
+
 
 function createMarkup (arr) {
     return arr.map(({ preview, original, description }) => {
@@ -16,22 +16,10 @@ function createMarkup (arr) {
     }).join("");
 }
 
-function handleImmage(event) {
-    if (event.target === event.currentTarget) {
-        return;
-    }
-
-    event.preventDefault();
-
-    // const targetElement = event.target.closest('.gallery__image')
- 
-    const instance = basicLightbox.create(
-        `<div class="modal">
-       <img src="${event.target.dataset.source}" alt="${event.target.alt}"/>
-    </div>`
-    );
-
-    instance.show();
-}
+var lightbox = new SimpleLightbox('.gallery a', { 
+    captionsData: 'alt',
+    captionDelay: 250 ,
+   
+ });
 
 console.log(galleryItems);
